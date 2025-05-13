@@ -10,8 +10,8 @@ class Opensearch < Formula
 
   def install
     ENV["JAVA_HOME"] = Formula["openjdk@21"].opt_prefix
-    system "./gradlew", ":distribution:archives:tar:assemble"
-    tarball = Dir["distribution/archives/tar/build/distributions/opensearch-*.tar.gz"].first
+    system "./gradlew", ":distribution:archives:darwin-arm64-tar:assemble"
+    tarball = Dir["distribution/archives/darwin-arm64-tar/build/distributions/opensearch-*.tar.gz"].first
     odie "Could not find OpenSearch tarball!" unless tarball
     mkdir "stage"
     system "tar", "-xzf", tarball, "-C", "stage", "--strip-components=1"
