@@ -16,7 +16,7 @@ class Opensearch < Formula
     mkdir "stage"
     system "tar", "-xzf", tarball, "-C", "stage", "--strip-components=1"
     libexec.install Dir["stage/*"]
-    bin.install_symlink libexec/"bin/opensearch"
+    (bin/"opensearch").write_env_script libexec/"bin/opensearch", :JAVA_HOME => Formula["openjdk@21"].opt_prefix
   end
 
   test do
